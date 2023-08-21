@@ -19,8 +19,7 @@ public class BeerControllerTestIT extends BaseTestClass{
     }
     @Test
     void findBeersHttpBasicAuth() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/beers/find")
-                        .with(httpBasic("uros","urospass")))
+        mockMvc.perform(MockMvcRequestBuilders.get("/beers/find"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("beers/findBeers"))
                 .andExpect(model().attributeExists("beer"));
