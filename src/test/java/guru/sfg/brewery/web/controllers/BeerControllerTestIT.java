@@ -29,7 +29,7 @@ public class BeerControllerTestIT extends BaseTestClass{
 
     @Test
     void initCreationFor() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/beers/new").with(httpBasic("user","password")))
+        mockMvc.perform(MockMvcRequestBuilders.get("/beers/new").with(httpBasic("scott","tiger")))
                 .andExpect(status().isOk())
                 .andExpect(view().name("beers/createBeer"))
                 .andExpect(model().attributeExists("beer"));
