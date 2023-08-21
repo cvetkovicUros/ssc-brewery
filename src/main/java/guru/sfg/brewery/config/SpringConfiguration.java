@@ -17,7 +17,8 @@ public class SpringConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(authorize -> {
                     authorize.antMatchers("/","/webjars/**","/beers/find").permitAll()
                             .antMatchers("/beers*").permitAll()
-                            .antMatchers(HttpMethod.GET,"/api/v1/beer/**").permitAll(); // ogranicava se samo na get pozive
+                            .antMatchers(HttpMethod.GET,"/api/v1/beer/**").permitAll() // ogranicava se samo na get pozive
+                            .mvcMatchers(HttpMethod.GET,"/api/v1/beerUpc/{upc}").permitAll();
                 })
                 .authorizeRequests()
                 .anyRequest().authenticated()
