@@ -21,7 +21,7 @@ public class PasswordEncodingTest extends BaseTestClass{
 
     @Test
     void testBcrypt15(){
-        PasswordEncoder bcrypt = new BCryptPasswordEncoder(15);
+        PasswordEncoder bcrypt = new BCryptPasswordEncoder(10);
         System.out.println(bcrypt.encode(PASSWORD_CUSTOMER));
         System.out.println(bcrypt.encode(PASSWORD_CUSTOMER));
     }
