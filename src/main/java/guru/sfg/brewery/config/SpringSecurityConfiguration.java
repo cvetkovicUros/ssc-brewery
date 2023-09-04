@@ -52,7 +52,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests(authorize -> {
-                    authorize.antMatchers("/","/webjars/**","/beers/find").permitAll()
+                    authorize
+                            .antMatchers("/h2-console/**").permitAll()
+                            .antMatchers("/","/webjars/**","/beers/find").permitAll()
                             .antMatchers("/beers*").permitAll()
                             .antMatchers(HttpMethod.GET,"/api/v1/beer/**").permitAll() // ogranicava se samo na get pozive
                             .mvcMatchers(HttpMethod.GET,"/api/v1/beerUpc/{upc}").permitAll();
@@ -63,6 +65,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .and()
                 .httpBasic();
+
+             http.headers().frameOptions().sameOrigin();
     }
 /** User Details Service **/
     /*@Override
@@ -180,12 +184,14 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("scott").password("{ldap}{SSHA}eI0/tNWJCa6G612n7ZYhXT0bgfMH0OKi069wSg==").roles("CUSTOMER");
     }*/
 
-    @Override
+
+    /** In memory auth **/
+    /*@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("uros").password("{bcrypt10}$2a$10$c.3UThreJplNwfUqI0iUo.EEbVNPf2koeafQ2R.n2gFK/kxjZJFs6").roles("ADMIN");
         auth.inMemoryAuthentication().withUser("user").password("{sha256}ae92c62cf34af5bfa2157874afedc087614397c6cb49ec5c663ad096a1bc08b2aa7a962f872f3da4").roles("USER");
         auth.inMemoryAuthentication().withUser("scott").password("{bcrypt15}$2a$15$gYHViD.2BRegysNhl6KnZOGtmeQe6UvE6eaTj2uyvzUDxPRBWNG76").roles("CUSTOMER");
-    }
+    }*/
 
 
 
